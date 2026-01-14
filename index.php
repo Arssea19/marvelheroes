@@ -129,29 +129,17 @@ include "koneksi.php";
         <div class="container">
           <h1 class="fw-bold display-4 pb-3">Gallery</h1>
           <div id="carouselExampleIndicators" class="carousel slide">
-            <div class="carousel-indicators">
-              <button type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide-to="0" class="active" aria-current="true" aria-label="Slide 1"></button>
-              <button type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide-to="1" aria-label="Slide 2"></button>
-              <button type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide-to="2" aria-label="Slide 3"></button>
-              <button type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide-to="3" aria-label="Slide 4"></button>
-              <button type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide-to="4" aria-label="Slide 5"></button>
-            </div>
+            <?php
+            $sql = "SELECT * FROM gallery ORDER BY created_at DESC";
+            $hasil = $conn->query($sql);
+            $aktif = true;
+            ?>
             <div class="carousel-inner">
-              <div class="carousel-item active">
-                <img src="img/spiderman.jpg" class="d-block w-100" alt="spiderman">
+            <?php while($row = $hasil->fetch_assoc()) { ?>
+              <div class="carousel-item <?= $aktif ? 'active' : '' ?>">
+                <img src="img/<?= $row['gambar'] ?>" class="d-block w-100">
               </div>
-              <div class="carousel-item">
-                <img src="img/doctor strange.jpg" class="d-block w-100" alt="doctor strange">
-              </div>
-              <div class="carousel-item">
-                <img src="img/captain america.jpg" class="d-block w-100" alt="captain america">
-              </div>
-              <div class="carousel-item">
-                <img src="img/black widow.jpg" class="d-block w-100" alt="black widow">
-              </div>
-              <div class="carousel-item">
-                <img src="img/black panthers.jpg" class="d-block w-100" alt="black panthers">
-              </div>
+            <?php $aktif = false; } ?>
             </div>
             <button class="carousel-control-prev" type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide="prev">
               <span class="carousel-control-prev-icon" aria-hidden="true"></span>
