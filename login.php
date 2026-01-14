@@ -15,7 +15,7 @@ if (isset($_POST['login'])) {
     if (mysqli_num_rows($query) > 0) {
         $data = mysqli_fetch_assoc($query);
 
-        $_SESSION['user_id'] = $data['id'];
+        $_SESSION['id'] = $data['id'];
         $_SESSION['username'] = $data['username'];
         $_SESSION['foto'] = $data['foto'];
 
