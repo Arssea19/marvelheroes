@@ -1,9 +1,9 @@
 <?php
 // session & koneksi sudah otomatis dari admin.php
-$id_user = $_SESSION['id_user'];
+$user = $_SESSION['username'];
 
 // ambil data user login
-$stmt = $conn->prepare("SELECT * FROM user WHERE id_user = ?");
+$stmt = $conn->prepare("SELECT * FROM user WHERE username = ?");
 $stmt->bind_param("i", $id_user);
 $stmt->execute();
 $hasil = $stmt->get_result();
@@ -23,7 +23,7 @@ $stmt->close();
                 <div class="card-body">
                     <form method="post" enctype="multipart/form-data">
 
-                        <!-- Username (readonly) -->
+                        <!-- Username -->
                         <div class="mb-3">
                             <label class="form-label">Username</label>
                             <input type="text" class="form-control" 
