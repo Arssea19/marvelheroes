@@ -19,7 +19,7 @@ if (isset($_POST['login'])) {
         $_SESSION['username'] = $data['username'];
         $_SESSION['foto'] = $data['foto'];
 
-        header("location: admin.php");
+        header("location:admin.php");
         exit;
     } else {
         $error = "Username atau Password salah";
