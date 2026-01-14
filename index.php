@@ -130,7 +130,7 @@ include "koneksi.php";
           <h1 class="fw-bold display-4 pb-3">Gallery</h1>
           <div id="carouselExampleIndicators" class="carousel slide">
             <?php
-            $sql = "SELECT * FROM gallery ORDER BY created_at DESC";
+            $sql = "SELECT * FROM gallery ORDER BY tanggal DESC";
             $hasil = $conn->query($sql);
             $aktif = true;
             ?>
