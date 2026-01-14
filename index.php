@@ -1,5 +1,5 @@
 <?php
-//menyertakan code dari file koneksi
+session_start();
 include "koneksi.php";
 ?>
 <!doctype html>
