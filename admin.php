@@ -57,7 +57,7 @@ if (!isset($_SESSION['username'])) {
             <li><hr class="dropdown-divider"></li>
             <li>
               <a class="dropdown-item" href="profil.php">
-                <i class="bi bi-person"></i> Profile
+                <i class="bi bi-box-arrow-right"></i> Profile
               </a>
             </li>
             <li>

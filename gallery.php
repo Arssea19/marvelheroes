@@ -44,7 +44,7 @@
                     <div class="modal-body">
                         <div class="mb-3">
 							<label for="judul" class="form-label">Deskripsi</label>
-                            <input type="text" class="form-control" name="Deskripsi" placeholder="Tuliskan Judul Artikel" required>
+                            <input type="text" class="form-control" name="Deskripsi" placeholder="Tuliskan Judul Gallery" required>
                         </div>
                         <div class="mb-3">
                             <label for="gambar" class="form-label">Gambar</label>
@@ -93,12 +93,14 @@
 include "upload_foto.php";
 
 //jika tombol simpan diklik
-if (isset($_POST['simpan'])) {
-    $deskripsi = $_POST['deskripsi'];
-    $tanggal = date("Y-m-d H:i:s");
-    $username = $_SESSION['username'];
-    $gambar = '';
-    $nama_gambar = $_FILES['gambar']['name'];
+if(isset($_POST['simpan'])){
+    $desc = $_POST['deskripsi'];
+    $img  = $_FILES['gambar']['name'];
+    move_uploaded_file($_FILES['gambar']['tmp_name'], "upload/".$img);
+
+    mysqli_query($conn,"INSERT INTO gallery VALUES(
+        null,'$desc','$img',NOW(),'$_SESSION[username]'
+    )");
 
     //jika ada file baru yang dikirim  
     if ($nama_gambar != '') {
@@ -114,7 +116,7 @@ if (isset($_POST['simpan'])) {
             //jika true maka message berisi pesan error, tampilkan dalam alert
             echo "<script>
                 alert('" . $cek_upload['message'] . "');
-                document.location='admin.php?page=article';
+                document.location='admin.php?page=gallery';
             </script>";
             die;
         }
@@ -133,7 +135,7 @@ if (isset($_POST['simpan'])) {
             unlink("img/" . $_POST['gambar_lama']);
         }
 
-        $stmt = $conn->prepare("UPDATE article 
+        $stmt = $conn->prepare("UPDATE gallery 
                                 SET 
                                 deskripsi =?,
                                 gambar = ?,

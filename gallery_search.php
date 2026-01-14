@@ -24,12 +24,12 @@
                             <br>pada : <?= $row["tanggal"] ?>
                             <br>oleh : <?= $row["username"] ?>
                         </td>
-                        <td><?= $row["isi"] ?></td>
+                        <td><?= $row["deskripsi"] ?></td>
                         <td>
                             <?php
                                 if ($row["gambar"] != '') {
                                     if (file_exists('img/' . $row["gambar"] . '')) { 
-                                        echo '<img src="img/' . $row["gambar"] . '" class="img-fluid" alt="Gambar Artikel">'; 
+                                        echo '<img src="img/' . $row["gambar"] . '" class="img-fluid" alt="Gambar Gallery">'; 
                                     }
                                 }
                             ?>
