@@ -112,7 +112,7 @@ if (isset($_SESSION['username'])) {
        	//check apakah ada baris hasil data user yang cocok
         if (!empty($row)) { 
             // SIMPAN DATA USER KE SESSION
-            $_SESSION['id_user']  = $row['id_user'];
+            $_SESSION['id']  = $row['id'];
             $_SESSION['username'] = $row['username'];
             $_SESSION['foto']     = $row['foto'];
             header("location:admin.php");
