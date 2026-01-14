@@ -111,9 +111,12 @@ if (isset($_SESSION['username'])) {
         //jika lolos semua validasi 
        	//check apakah ada baris hasil data user yang cocok
         if (!empty($row)) { 
-            //jika data ada (berhasil), alihkan ke halaman admin
-            $_SESSION['username'] = $username;
+            // SIMPAN DATA USER KE SESSION
+            $_SESSION['id_user']  = $row['id_user'];
+            $_SESSION['username'] = $row['username'];
+            $_SESSION['foto']     = $row['foto'];
             header("location:admin.php");
+
         } else {
             //jika data tidak ada (gagal), tetap di halaman login
             header("location:login.php");
