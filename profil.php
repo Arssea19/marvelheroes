@@ -2,6 +2,8 @@
 // session & koneksi sudah otomatis dari admin.php
 $user = $_SESSION['username'];
 
+include "koneksi.php";
+
 // ambil data user login
 $stmt = $conn->prepare("SELECT * FROM user WHERE username = ?");
 $stmt->bind_param("i", $id_user);
