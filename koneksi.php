@@ -4,16 +4,11 @@ date_default_timezone_set('Asia/Jakarta');
 $servername = "localhost";
 $username = "root";
 $password = "";
-$db = "marvelheroes"; //nama database
+$db = "marvelheroes";
 
-//create connection
-$conn = new mysqli($servername,$username,$password,$db);
+$conn = new mysqli($servername, $username, $password, $db);
 
-//check apakah ada error connection
-if($conn->connect_error){
-	//jika ada, hentikan script dan tampilkan pesan error
-	die("Connection failed : ".$conn->connect_error);
+if ($conn->connect_error) {
+    die("Connection failed: " . $conn->connect_error);
 }
-
-//echo "Connected successfully<hr>";
 ?>
