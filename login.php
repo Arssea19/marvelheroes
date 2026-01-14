@@ -1,15 +1,32 @@
 <?php
-//memulai session atau melanjutkan session yang sudah ada
-session_start(); 
-
-//menyertakan code dari file koneksi
+session_start();
 include "koneksi.php";
 
-//check jika belum ada user yang login arahkan ke halaman admin
-if (isset($_SESSION['username'])) { 
-	header("location:admin.php"); 
+if (isset($_POST['login'])) {
+    $username = $_POST['username'];
+    $password = md5($_POST['password']);
+
+    $query = mysqli_query($conn, 
+        "SELECT * FROM user 
+         WHERE username='$username' 
+         AND password='$password'"
+    );
+
+    if (mysqli_num_rows($query) > 0) {
+        $data = mysqli_fetch_assoc($query);
+
+        $_SESSION['user_id'] = $data['id'];
+        $_SESSION['username'] = $data['username'];
+        $_SESSION['foto'] = $data['foto'];
+
+        header("Location: admin.php");
+        exit;
+    } else {
+        $error = "Username atau Password salah";
+    }
 }
 ?>
+
 
 <!DOCTYPE html>
 <html lang="en">
